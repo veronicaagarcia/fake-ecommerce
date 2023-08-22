@@ -1,0 +1,3 @@
+[submodule "vite-project/tienda-online-con-React"]
+	path = vite-project/tienda-online-con-React
+	url = git@github.com:veronicaagarcia/tienda-online-con-React.git
