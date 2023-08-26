@@ -1,8 +1,10 @@
+import HeaderHome from "../../Components/HeaderHome"
+
 function MyAccount () {
     return (
-        <div className='bg-red-90'>
+        <HeaderHome>
             My Account
-        </div>
+        </HeaderHome>
     )
 }
 

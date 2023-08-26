@@ -1,8 +1,10 @@
+import HeaderHome from "../../Components/HeaderHome"
+
 function NotFound () {
     return (
-        <div className='bg-red-90'>
+        <HeaderHome>
             NotFound
-        </div>
+        </HeaderHome>
     )
 }
 

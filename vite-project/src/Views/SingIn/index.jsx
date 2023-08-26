@@ -1,8 +1,10 @@
+import HeaderHome from "../../Components/HeaderHome"
+
 function SingIn () {
     return (
-        <div className='bg-red-90'>
+        <HeaderHome>
             SingIn
-        </div>
+        </HeaderHome>
     )
 }
 

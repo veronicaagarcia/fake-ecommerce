@@ -1,8 +1,10 @@
+import HeaderHome from "../../Components/HeaderHome"
+
 function MyOrder () {
     return (
-        <div className='bg-red-90'>
+        <HeaderHome>
             MyOrder
-        </div>
+        </HeaderHome>
     )
 }
 
