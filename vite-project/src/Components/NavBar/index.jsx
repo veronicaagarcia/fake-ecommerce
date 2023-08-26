@@ -1,8 +1,13 @@
 /* eslint-disable react/no-unescaped-entities */
-import { NavLink } from "react-router-dom";
+import { ShoppingCartIcon } from "@heroicons/react/24/solid"
+import { NavLink } from "react-router-dom"
+import { useContext } from "react"
+import { CartContext } from "../../Context"
+
 function NavBar () {
 
-    const textDecoration = 'underline underline-offset-4';
+    const textDecoration = 'underline underline-offset-4'
+    const context = useContext(CartContext)
 
     return (
         <nav className="flex items-center justify-between  fixed z-2 top-3 w-full py-5 px-8 text-sm">
@@ -65,8 +70,11 @@ function NavBar () {
                     </NavLink>
                 </li>
                 <li className="hover:text-cyan-400">
-                    <NavLink className={({isActive})=> isActive ? textDecoration : undefined } to="/MyOrder" >
-                        🛒 0
+                    <NavLink className="flex item-center {({isActive})=> isActive ? textDecoration : undefined }" to="/MyOrder" >
+                        <div>
+                            {context.count}
+                        </div>
+                        <ShoppingCartIcon  className="h-6 w-6 cursor-pointer" /> 
                     </NavLink>
                 </li>
             </ul>
