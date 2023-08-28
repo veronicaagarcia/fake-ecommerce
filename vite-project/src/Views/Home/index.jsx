@@ -3,6 +3,7 @@ import { useState, useEffect } from "react"
 import HeaderHome from "../../Components/HeaderHome"
 import Card from "../../Components/Card"
 import ProductDetail from "../../Components/ProductDetail"
+import CartCard from "../../Components/CartCard"
 
 function Home () {
     const [products, SetProducts] = useState([])
@@ -16,7 +17,7 @@ function Home () {
     return (
         <HeaderHome>
             Home
-            <div className="grid gap-6 grid-cols-3 w-full max-w-screen-md">
+            <div className="grid gap-3 grid-cols-3 w-5/12 mt-5 max-w-screen-md">
                 {products.map((product) => (
 
                     <Card key= {product.id} data={product} />
@@ -24,6 +25,7 @@ function Home () {
                 ))}
             </div>
             <ProductDetail />
+            <CartCard />
         </HeaderHome>
     )
 }

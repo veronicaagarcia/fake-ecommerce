@@ -7,6 +7,7 @@ import MyOrders from "../MyOrders"
 import NotFound from "../NotFound"
 import SingIn from "../SingIn"
 import NavBar from "../../Components/NavBar"
+// import CartCard from "../../Components/CartCard";
 import "./App.css"
 
 const Routes = () => {
@@ -27,6 +28,7 @@ function App() {
       <BrowserRouter>
       <Routes/>
       <NavBar />
+      {/* <CartCard /> */}
       </BrowserRouter>
     </CartProvider>
   )

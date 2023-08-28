@@ -10,8 +10,8 @@ function NavBar () {
     const context = useContext(CartContext)
 
     return (
-        <nav className="flex items-center justify-between  fixed z-2 top-3 w-full py-5 px-8 text-sm">
-            <ul className='flex gap-3 items-center'>
+        <nav className="flex items-center justify-between  fixed z-2 top-2 w-full py-5 px-3 text-xs">
+            <ul className='flex gap-2 items-center'>
                 <li>
                     <NavLink className="font-bold text-lg" to="/" >
                        Shopi
@@ -23,13 +23,13 @@ function NavBar () {
                     </NavLink>
                 </li>
                 <li className="hover:text-cyan-400">
-                    <NavLink className={({isActive})=> isActive ? textDecoration : undefined } to="/jewelery" >
-                        Jewelery
+                    <NavLink className={({isActive})=> isActive ? textDecoration : undefined } to="/electronics" >
+                        Electronics
                     </NavLink>
                 </li>
                 <li className="hover:text-cyan-400">
-                    <NavLink className={({isActive})=> isActive ? textDecoration : undefined } to="/electronics" >
-                        Electronics
+                    <NavLink className={({isActive})=> isActive ? textDecoration : undefined } to="/jewelery" >
+                        Jewelery
                     </NavLink>
                 </li>
                 <li className="hover:text-cyan-400">
@@ -48,10 +48,10 @@ function NavBar () {
                     </NavLink>
                 </li> */}
             </ul>
-            <ul className='flex gap-3 items-center'>
+            <ul className='flex gap-2 items-center'>
                 <li>
                     <NavLink className="font-extralight font-xs text-white/60" to="/" >
-                       veroagarcia90@gmail.com
+                       vero@gmail.com
                     </NavLink>
                 </li>
                 <li className="hover:text-cyan-400">
@@ -74,7 +74,7 @@ function NavBar () {
                         <div>
                             {context.count}
                         </div>
-                        <ShoppingCartIcon  className="h-6 w-6 cursor-pointer" /> 
+                        <ShoppingCartIcon  className="h-4 w-4 text-xs cursor-pointer" /> 
                     </NavLink>
                 </li>
             </ul>
