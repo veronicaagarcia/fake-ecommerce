@@ -7,8 +7,8 @@ import MyOrders from "../MyOrders"
 import NotFound from "../NotFound"
 import SingIn from "../SingIn"
 import NavBar from "../../Components/NavBar"
-// import CartCard from "../../Components/CartCard";
 import "./App.css"
+
 
 const Routes = () => {
   let routes = useRoutes([
@@ -16,6 +16,8 @@ const Routes = () => {
     { path: "/MyAccount", element: <MyAccount/> },
     { path: "/MyOrder", element: <MyOrder/> },
     { path: "/MyOrders", element: <MyOrders/> },
+    { path: "/MyOrders/last", element: <MyOrder/> },
+    { path: "/MyOrders/:id", element: <MyOrder/> },
     { path: "/*", element: <NotFound/> },
     { path: "/SingIn", element: <SingIn/> },
   ])

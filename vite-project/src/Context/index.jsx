@@ -11,6 +11,7 @@ export const CartProvider = ({children}) => {
     const [productsInCart, setProductsInCart] = useState([])
     const [productCartCardOpen, setProductCartCardOpen] = useState(false)
     const OpenCloseProductCartCard = () => setProductCartCardOpen(!productCartCardOpen)
+    const [order, setOrder] = useState([])
 
     return (
         <CartContext.Provider value={{
@@ -23,7 +24,9 @@ export const CartProvider = ({children}) => {
             productsInCart,
             setProductsInCart,
             productCartCardOpen,
-            OpenCloseProductCartCard
+            OpenCloseProductCartCard,
+            order,
+            setOrder
         }}>
             {children}
         </CartContext.Provider>

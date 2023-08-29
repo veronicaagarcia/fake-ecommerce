@@ -22,23 +22,17 @@ function Card ({data}) {
             context.OpenCloseProductCartCard()
         }
 
-
-        const productExists = context.productsInCart.some(el => el.id === data.id); // dará true si el producto ya se encuentra en el carrito
+        const productExists = context.productsInCart.some(el => el.id === data.id); 
 
 		if (productExists) {
-			// valida la existencia
-			const productCart = context.productsInCart.find(el => el.id === data.id); // busca el producto
-			productCart.quantity += 1; // aumenta la cantidad en 1
+			const productCart = context.productsInCart.find(el => el.id === data.id); 
+			productCart.quantity += 1; 
 		} else {
-			data.quantity = 1; // si el producto no está, le agrega la propiedad quantity con valor uno, y luego setea el carrito agregando ese producto
+			data.quantity = 1; 
 			context.setProductsInCart([...context.productsInCart, data]);
 		}
+
 		context.setCount(context.count + 1);
-
-
-        // context.setCount(context.count + 1)
-        // context.setProductsInCart([...context.productsInCart, data])
-       
     }
     return (
         <div className="bg-white cursor-pointer w-full h-full mx-8 px-2 rounded-lg"

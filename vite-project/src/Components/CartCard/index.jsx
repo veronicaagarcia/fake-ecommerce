@@ -1,5 +1,6 @@
-import { XCircleIcon } from "@heroicons/react/24/solid"
+import {Link} from "react-router-dom"
 import { useContext } from "react"
+import { XCircleIcon } from "@heroicons/react/24/solid"
 import { CartContext } from "../../Context"
 import { totalPrice } from "../../Utils"
 import NewInCart from "../NewInCart"
@@ -23,26 +24,31 @@ const CartCard = () => {
             context.setProductsInCart(saveProductCar)
             context.setCount(context.count - 1)
         }
-        // const removeOfCart = context.productsInCart.map((product) => product.id == id){}
-        // if(removeOfCart.quantity > 1 ) {
-        //     removeOfCart.quantity --
-        // } else {
-
-        // const filterProducts = context.productsInCart.filter(product => product.id != id)
         
-        // context.setProductsInCart(filterProducts)
-        // context.setCount(context.count - 1)
-        // }
+    }
+    
+    const buyOrder = () => {
+        const orderToAdd = {
+            date: new Date(),
+            products: context.productsInCart,
+            totalProducts: context.productsInCart.lenght,
+            totalPrice: totalPrice(context.productsInCart),
+        };
+      
+        context.setOrder([...context.order, orderToAdd]);
+        context.setProductsInCart([]);
+        context.setCount(0);
     }
    
     return (
-        <aside className={` ${context.productCartCardOpen == true ? "flex" : "hidden"}  flex-col fixed cartCard border overflow-y-scroll bg-white border-black rounded-lg w-1/3 h-[calc(100vh-80px)]`}>
-            <div className='flex justify-between items-center p-4'>
+        <aside className={` ${context.productCartCardOpen == true ? "flex" : "hidden"}  flex-col fixed cartCard border overflow-y-scroll bg-white border-black rounded-lg w-1/4 h-[calc(100vh-80px)]`}>
+            <div className='flex justify-between items-center p-2'>
                 <h2 className='font-medium text-black/60 pl-20 text-xl'>My Order</h2>
                 <div><XCircleIcon 
                 className="h-6 w-6 text-red-500 cursor-pointer"
                 onClick={() => context.OpenCloseProductCartCard()}/></div>
             </div>
+            <div className="flex-1">
             {
                 context.productsInCart.map((product) => (
                     <NewInCart 
@@ -56,12 +62,15 @@ const CartCard = () => {
                     />
                 ))
             }
-            <div className="p-6">
+            </div>
+            <div className="p-2">
                 <p className="flex justify-center ">
-                    <span className="text-black/60 mr-5">Total:</span>
-                    <span className="text-black/60 ml-5">${totalPrice(context.productsInCart)}</span>
+                    <span className="text-black/60 text-md mr-5">Total:</span>
+                    <span className="text-lime-600 text-md ml-5">${totalPrice(context.productsInCart)}</span>
                 </p>
-
+                <Link to="/MyOrders/last">
+                    <button className="text-white bg-black/50 hover:bg-lime-600 py-1 mt-2 w-full rounded-lg" onClick={()=>buyOrder()}>Buy</button>
+                </Link>
             </div>
 
         </aside>
