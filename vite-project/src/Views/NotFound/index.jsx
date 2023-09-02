@@ -1,10 +1,9 @@
-import HeaderHome from "../../Components/HeaderHome"
-
+import Layout from "../../Components/Layout"
 function NotFound () {
     return (
-        <HeaderHome>
+        <Layout>
             NotFound
-        </HeaderHome>
+        </Layout>
     )
 }
 

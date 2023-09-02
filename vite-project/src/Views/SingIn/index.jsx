@@ -1,10 +1,9 @@
-import HeaderHome from "../../Components/HeaderHome"
-
+import Layout from "../../Components/Layout"
 function SingIn () {
     return (
-        <HeaderHome>
+        <Layout>
             SingIn
-        </HeaderHome>
+        </Layout>
     )
 }
 

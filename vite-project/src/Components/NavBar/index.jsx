@@ -5,53 +5,52 @@ import { useContext } from "react"
 import { CartContext } from "../../Context"
 
 function NavBar () {
-
     const textDecoration = 'underline underline-offset-4'
     const context = useContext(CartContext)
 
     return (
-        <nav className="flex items-center justify-between  fixed z-2 top-2 w-full py-5 px-3 text-xs">
+        <nav className="flex items-center justify-between fixed z-2 top-2 w-full py-5 px-3 text-xs">
             <ul className='flex gap-2 items-center'>
                 <li>
-                    <NavLink className="font-bold text-lg" to="/" >
-                       Shopi
+                    <NavLink className="font-bold cursor-none text-xs mt-0 text-cyan-400">
+                       Shop
                     </NavLink>
                 </li>
                 <li className="hover:text-cyan-400">
-                    <NavLink className={({isActive})=> isActive ? textDecoration : undefined} to="/" >
+                    <NavLink className={({isActive})=> isActive ? textDecoration : undefined} to="/"
+                    onClick={()=>context.setSearchByCategory()} >
                         All
                     </NavLink>
                 </li>
                 <li className="hover:text-cyan-400">
-                    <NavLink className={({isActive})=> isActive ? textDecoration : undefined } to="/electronics" >
+                    <NavLink className={({isActive})=> isActive ? textDecoration : undefined } to="/electronics"
+                    onClick={()=>context.setSearchByCategory("electronics")} >
                         Electronics
                     </NavLink>
                 </li>
                 <li className="hover:text-cyan-400">
-                    <NavLink className={({isActive})=> isActive ? textDecoration : undefined } to="/jewelery" >
+                    <NavLink className={({isActive})=> isActive ? textDecoration : undefined } to="/jewelery" 
+                    onClick={()=>context.setSearchByCategory("jewelery")}>
                         Jewelery
                     </NavLink>
                 </li>
                 <li className="hover:text-cyan-400">
-                    <NavLink className={({isActive})=> isActive ? textDecoration : undefined } to="/menClothing" >
+                    <NavLink className={({isActive})=> isActive ? textDecoration : undefined } to="/menClothing"
+                    onClick={()=>context.setSearchByCategory("men's clothing")} >
                         Men's clothing
                     </NavLink>
                 </li>
                 <li className="hover:text-cyan-400">
-                    <NavLink className={({isActive})=> isActive ? textDecoration : undefined } to="/womenClothing" >
+                    <NavLink className={({isActive})=> isActive ? textDecoration : undefined } to="/womenClothing"
+                    onClick={()=>context.setSearchByCategory("women's clothing")} >
                         Women's clothing
                     </NavLink>
                 </li>
-                {/* <li className="hover:text-cyan-400">
-                    <NavLink className={({isActive})=> isActive ? textDecoration : undefined } to="/others" >
-                        Others
-                    </NavLink>
-                </li> */}
             </ul>
             <ul className='flex gap-2 items-center'>
                 <li>
                     <NavLink className="font-extralight font-xs text-white/60" to="/" >
-                       vero@gmail.com
+                       veroagarcia90@gmail.com
                     </NavLink>
                 </li>
                 <li className="hover:text-cyan-400">
@@ -79,7 +78,6 @@ function NavBar () {
                 </li>
             </ul>
         </nav>
-
     )
 }
 

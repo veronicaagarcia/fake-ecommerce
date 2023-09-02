@@ -13,6 +13,11 @@ import "./App.css"
 const Routes = () => {
   let routes = useRoutes([
     { path: "/", element: <Home/> },
+    { path: "/", element: <Home/> },
+    { path: "/electronics", element: <Home/> },
+    { path: "/jewelery", element: <Home/> },
+    { path: "/menClothing", element: <Home/> },
+    { path: "/womenClothing", element: <Home/> },
     { path: "/MyAccount", element: <MyAccount/> },
     { path: "/MyOrder", element: <MyOrder/> },
     { path: "/MyOrders", element: <MyOrders/> },
@@ -30,7 +35,6 @@ function App() {
       <BrowserRouter>
       <Routes/>
       <NavBar />
-      {/* <CartCard /> */}
       </BrowserRouter>
     </CartProvider>
   )

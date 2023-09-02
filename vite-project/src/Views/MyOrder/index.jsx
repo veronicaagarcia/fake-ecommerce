@@ -2,7 +2,7 @@ import { useContext } from "react"
 import {Link} from "react-router-dom"
 import { ArrowLeftCircleIcon } from "@heroicons/react/24/solid"
 import { CartContext } from "../../Context"
-import HeaderHome from "../../Components/HeaderHome"
+import Layout from "../../Components/Layout"
 import NewInCart from "../../Components/NewInCart"
 
 function MyOrder () {
@@ -14,7 +14,7 @@ function MyOrder () {
     }
     
     return (
-        <HeaderHome>
+        <Layout>
             <div className="flex items-center w-80 justify-center relative mb-5">
                 <Link to="/MyOrders" className="absolute left-0">
                     <ArrowLeftCircleIcon  className="h-8 w-8 text-cyan-400 cursor-pointer" />
@@ -36,7 +36,7 @@ function MyOrder () {
                 ))
             }
             </div>
-        </HeaderHome>
+        </Layout>
     )
 }
 

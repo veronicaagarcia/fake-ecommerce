@@ -1,9 +1,12 @@
+/* eslint-disable no-dupe-else-if */
 /* eslint-disable react/prop-types */
-import { createContext, useState } from "react"
+import { createContext, useState, useEffect } from "react"
 
 export const CartContext = createContext()
 
 export const CartProvider = ({children}) => {
+   
+    const [products, setProducts] = useState([])
     const [count, setCount] = useState(0)
     const [productDetailOpen, setProductDetailOpen] = useState(false)
     const OpenCloseProductDetail = () => setProductDetailOpen(!productDetailOpen)
@@ -12,12 +15,56 @@ export const CartProvider = ({children}) => {
     const [productCartCardOpen, setProductCartCardOpen] = useState(false)
     const OpenCloseProductCartCard = () => setProductCartCardOpen(!productCartCardOpen)
     const [order, setOrder] = useState([])
+    const [searchByTitle, setSearchByTitle] = useState(null)
+    const [productsFiltered, setProductsFiltered] = useState([])
+    const [searchByCategory, setSearchByCategory] = useState(null)
+
+    useEffect(() => {
+        fetch("https://fakestoreapi.com/products")
+        .then(response => response.json())
+        .then(data => setProducts(data))
+    }, [])
+
+    const filteredProductsByTitle = (products, searchByTitle) => {
+        return products?.filter(product => product.title.toLowerCase().includes(searchByTitle.toLowerCase()))
+    }
+    
+    const filteredProductsByCategory = (products, searchByCategory) => {
+        return products?.filter(product => product.category.toLowerCase() ===(searchByCategory.toLowerCase()))
+    }
+    
+    const filters = (searchType, products, searchByTitle, searchByCategory) => {
+        if (searchType === 'TITLE') {
+          return filteredProductsByTitle(products, searchByTitle)
+        }
+    
+        if (searchType === 'CATEGORY') {
+          return filteredProductsByCategory(products, searchByCategory)
+        }
+    
+        if (searchType === 'TITLE_AND_CATEGORY') {
+          return filteredProductsByCategory(products, searchByCategory).filter(product => product.title.toLowerCase().includes(searchByTitle.toLowerCase()))
+        }
+    
+        if (!searchType) {
+          return products
+        }
+    }
+    useEffect(() => {
+        if (searchByTitle && searchByCategory) setProductsFiltered(filters('TITLE_AND_CATEGORY', products, searchByTitle, searchByCategory))
+        if (searchByTitle && !searchByCategory) setProductsFiltered(filters('TITLE', products, searchByTitle, searchByCategory))
+        if (!searchByTitle && searchByCategory) setProductsFiltered(filters('CATEGORY', products, searchByTitle, searchByCategory))
+        if (!searchByTitle && !searchByCategory) setProductsFiltered(filters(null, products, searchByTitle, searchByCategory))
+    }, [products, searchByTitle, searchByCategory])
 
     return (
         <CartContext.Provider value={{
+            products,
+            setProducts,
             count,
             setCount,
             productDetailOpen,
+            setProductDetailOpen,
             OpenCloseProductDetail,
             productShowDetail,
             setProductShowDetail,
@@ -26,7 +73,13 @@ export const CartProvider = ({children}) => {
             productCartCardOpen,
             OpenCloseProductCartCard,
             order,
-            setOrder
+            setOrder,
+            searchByTitle,
+            setSearchByTitle,
+            productsFiltered,
+            setProductsFiltered,
+            searchByCategory,
+            setSearchByCategory,
         }}>
             {children}
         </CartContext.Provider>

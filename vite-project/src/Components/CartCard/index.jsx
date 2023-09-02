@@ -24,14 +24,23 @@ const CartCard = () => {
             context.setProductsInCart(saveProductCar)
             context.setCount(context.count - 1)
         }
-        
     }
-    
     const buyOrder = () => {
+
+        let totalQuantity = 0
+         
+        for (let i=0; i < context.productsInCart.length; i++){
+            if(context.productsInCart[i].quantity === 1){
+                totalQuantity = totalQuantity + 1
+            } else {
+                totalQuantity = totalQuantity + context.productsInCart[i].quantity
+            }   
+        }
+        
         const orderToAdd = {
             date: new Date(),
             products: context.productsInCart,
-            totalProducts: context.productsInCart.lenght,
+            totalProducts: totalQuantity,
             totalPrice: totalPrice(context.productsInCart),
         };
       
@@ -41,9 +50,9 @@ const CartCard = () => {
     }
    
     return (
-        <aside className={` ${context.productCartCardOpen == true ? "flex" : "hidden"}  flex-col fixed cartCard border overflow-y-scroll bg-white border-black rounded-lg w-1/4 h-[calc(100vh-80px)]`}>
+        <aside className={` ${context.productCartCardOpen == true ? "flex" : "hidden"}  flex-col fixed cartCard border overflow-y-scroll bg-white border-black rounded-lg w-1/5 h-[calc(100vh-80px)]`}>
             <div className='flex justify-between items-center p-2'>
-                <h2 className='font-medium text-black/60 pl-20 text-xl'>My Order</h2>
+                <h2 className='font-medium text-black/60 pl-2 text-xl'>My Order</h2>
                 <div><XCircleIcon 
                 className="h-6 w-6 text-red-500 cursor-pointer"
                 onClick={() => context.OpenCloseProductCartCard()}/></div>
@@ -72,7 +81,6 @@ const CartCard = () => {
                     <button className="text-white bg-black/50 hover:bg-lime-600 py-1 mt-2 w-full rounded-lg" onClick={()=>buyOrder()}>Buy</button>
                 </Link>
             </div>
-
         </aside>
     )
 } 

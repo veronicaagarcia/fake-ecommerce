@@ -1,6 +1,5 @@
-
 // eslint-disable-next-line react/prop-types
-function HeaderHome ({children}){
+function Layout ({children}){
     return (
         <div className="flex flex-col items-center mt-16">
             {children}
@@ -8,4 +7,4 @@ function HeaderHome ({children}){
     )
 }
 
-export default HeaderHome
+export default Layout

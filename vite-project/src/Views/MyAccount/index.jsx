@@ -1,10 +1,10 @@
-import HeaderHome from "../../Components/HeaderHome"
+import Layout from "../../Components/Layout"
 
 function MyAccount () {
     return (
-        <HeaderHome>
+        <Layout>
             My Account
-        </HeaderHome>
+        </Layout>
     )
 }
 
