@@ -4,6 +4,28 @@ import { createContext, useState, useEffect } from "react"
 
 export const CartContext = createContext()
 
+export const inLocalStorage = () => {
+    const accountInLocalStorage = localStorage.getItem('account')
+    const signOutInLocalStorage = localStorage.getItem('signOut')
+    let parsedAccount
+    let parsedSignOut
+  
+    if (!accountInLocalStorage) {
+      localStorage.setItem('account', JSON.stringify({}))
+      parsedAccount = {}
+    } else {
+      parsedAccount = JSON.parse(accountInLocalStorage)
+    }
+  
+    if (!signOutInLocalStorage) {
+      localStorage.setItem('signOut', JSON.stringify(false))
+      parsedSignOut = false
+    } else {
+      parsedSignOut = JSON.parse(signOutInLocalStorage)
+    }
+  }
+
+
 export const CartProvider = ({children}) => {
    
     const [products, setProducts] = useState([])
@@ -18,6 +40,9 @@ export const CartProvider = ({children}) => {
     const [searchByTitle, setSearchByTitle] = useState(null)
     const [productsFiltered, setProductsFiltered] = useState([])
     const [searchByCategory, setSearchByCategory] = useState(null)
+
+    const [account, setAccount] = useState({})
+    const [signOut, setSignOut] = useState(false)
 
     useEffect(() => {
         fetch("https://fakestoreapi.com/products")
@@ -80,6 +105,10 @@ export const CartProvider = ({children}) => {
             setProductsFiltered,
             searchByCategory,
             setSearchByCategory,
+            account,
+            setAccount,
+            signOut,
+            setSignOut
         }}>
             {children}
         </CartContext.Provider>

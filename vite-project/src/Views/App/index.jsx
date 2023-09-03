@@ -5,7 +5,7 @@ import MyAccount from "../MyAccount"
 import MyOrder from "../MyOrder";
 import MyOrders from "../MyOrders"
 import NotFound from "../NotFound"
-import SingIn from "../SingIn"
+import SignIn from "../SignIn"
 import NavBar from "../../Components/NavBar"
 import "./App.css"
 
@@ -24,7 +24,7 @@ const Routes = () => {
     { path: "/MyOrders/last", element: <MyOrder/> },
     { path: "/MyOrders/:id", element: <MyOrder/> },
     { path: "/*", element: <NotFound/> },
-    { path: "/SingIn", element: <SingIn/> },
+    { path: "/SignIn", element: <SignIn/> },
   ])
   return routes
 }

@@ -9,7 +9,7 @@ function MyOrders () {
     return (
         <Layout>
             <div className="flex items-center w-80 justify-center relative mb-5">
-            <h1>My Orders</h1>
+            <h1 className="font-medium mt-3 text-lg">My Orders</h1>
             </div>
             {
                 context.order.map((item, index)=>(

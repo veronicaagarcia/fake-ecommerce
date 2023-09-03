@@ -8,12 +8,63 @@ function NavBar () {
     const textDecoration = 'underline underline-offset-4'
     const context = useContext(CartContext)
 
-    return (
-        <nav className="flex items-center justify-between fixed z-2 top-2 w-full py-5 px-3 text-xs">
-            <ul className='flex gap-2 items-center'>
+    const signOut = localStorage.getItem('sign-out')
+    const parsedSignOut = JSON.parse(signOut)
+    const isUserSignOut = context.signOut || parsedSignOut
+
+    const signOutClick = () => {
+        const stringifySignOut = JSON.stringify(true)
+        localStorage.setItem('signOut', stringifySignOut)
+        context.setSignOut(true)
+    }
+
+    const renderView = () => {
+        if (isUserSignOut) {
+          return (
+            <li>
+              <NavLink
+                to="/SignIn"
+                className={({ isActive }) => isActive ? textDecoration : undefined }
+                onClick={() => signOutClick()}>
+                Sign out
+              </NavLink>
+            </li>
+          )
+        } else {
+          return (
+            <>
                 <li>
-                    <NavLink className="font-bold cursor-none text-xs mt-0 text-cyan-400">
-                       Shop
+                    <NavLink className="font-extralight font-xs text-white/60" to="/" >
+                       veroagarcia90@gmail.com
+                    </NavLink>
+                </li>
+                <li className="hover:text-cyan-400">
+                    <NavLink className={({isActive})=> isActive ? textDecoration : undefined } to="/MyOrders" >
+                        My orders
+                    </NavLink>
+                </li>
+                <li className="hover:text-cyan-400">
+                    <NavLink className={({isActive})=> isActive ? textDecoration : undefined } to="/MyAccount" >
+                        My account
+                    </NavLink>
+                </li>
+                <li className="hover:text-cyan-400">
+                    <NavLink className={({isActive})=> isActive ? textDecoration : undefined } to="/SignIn"
+                    onClick={() => signOutClick()}> 
+                        Sign in
+                    </NavLink>
+                </li>
+            </>
+          )
+        }
+      }
+
+    return (
+        <nav className="flex bg-zinc-800 items-center justify-between fixed z-2 top-0 w-full py-5 px-3 text-md ">
+            <ul className='flex gap-3 items-center'>
+                <li>
+                    <NavLink className="font-bold text-cyan-400 cursor-none text-lg mt-0">
+                       My Shopp
                     </NavLink>
                 </li>
                 <li className="hover:text-cyan-400">
@@ -48,32 +99,13 @@ function NavBar () {
                 </li>
             </ul>
             <ul className='flex gap-2 items-center'>
-                <li>
-                    <NavLink className="font-extralight font-xs text-white/60" to="/" >
-                       veroagarcia90@gmail.com
-                    </NavLink>
-                </li>
-                <li className="hover:text-cyan-400">
-                    <NavLink className={({isActive})=> isActive ? textDecoration : undefined } to="/MyOrders" >
-                        My orders
-                    </NavLink>
-                </li>
-                <li className="hover:text-cyan-400">
-                    <NavLink className={({isActive})=> isActive ? textDecoration : undefined } to="/MyAccount" >
-                        My account
-                    </NavLink>
-                </li>
-                <li className="hover:text-cyan-400">
-                    <NavLink className={({isActive})=> isActive ? textDecoration : undefined } to="/SingIn" >
-                        Sing in
-                    </NavLink>
-                </li>
+                {renderView()}
                 <li className="hover:text-cyan-400">
                     <NavLink className="flex item-center {({isActive})=> isActive ? textDecoration : undefined }" to="/MyOrder" >
                         <div>
                             {context.count}
                         </div>
-                        <ShoppingCartIcon  className="h-4 w-4 text-xs cursor-pointer" /> 
+                        <ShoppingCartIcon  className="h-6 w-5 text-md cursor-pointer" /> 
                     </NavLink>
                 </li>
             </ul>

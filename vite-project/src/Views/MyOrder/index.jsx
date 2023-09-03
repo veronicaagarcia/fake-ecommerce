@@ -19,7 +19,7 @@ function MyOrder () {
                 <Link to="/MyOrders" className="absolute left-0">
                     <ArrowLeftCircleIcon  className="h-8 w-8 text-cyan-400 cursor-pointer" />
                 </Link>
-            <h1>My Order</h1>
+            <h1 className="font-medium mt-3 text-lg">My Order</h1>
             </div>
 
             <div className="flex flex-col w-80">

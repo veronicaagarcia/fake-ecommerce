@@ -28,7 +28,7 @@ function Home () {
     return (
         <Layout>
             <div className="flex items-center justify-center relative w-70 mb-4">
-                <h1 className="font-medium text-md">Exclusive Products</h1>
+                <h1 className="font-medium mt-3 text-lg">Exclusive Products</h1>
             </div>
             <input type="text" placeholder="Search a product" className="rounded-lg border-2 border-cyan-400 text-black w-1/5 p-1 focus:outline-none"
             onChange={(event)=> context.setSearchByTitle(event.target.value)}/>
