@@ -2,7 +2,7 @@ import Layout from "../../Components/Layout"
 function NotFound () {
     return (
         <Layout>
-            <h1 className="font-medium mt-3 text-lg">NotFound</h1>
+            <img src="../../../public/siteground-404-page.png" alt="Page not found" />
         </Layout>
     )
 }

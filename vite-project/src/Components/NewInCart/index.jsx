@@ -1,7 +1,6 @@
 /* eslint-disable react/prop-types */
 import { XMarkIcon } from "@heroicons/react/24/solid" 
 
-
 const NewInCart = props => {
     const {id, image, title, price, quantity, deleteProductCart} = props
 

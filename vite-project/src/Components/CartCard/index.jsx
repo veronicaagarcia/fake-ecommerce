@@ -4,7 +4,6 @@ import { XCircleIcon } from "@heroicons/react/24/solid"
 import { CartContext } from "../../Context"
 import { totalPrice } from "../../Utils"
 import NewInCart from "../NewInCart"
-import "./styles.css"
 
 const CartCard = () => {
     const context = useContext(CartContext)
@@ -50,7 +49,7 @@ const CartCard = () => {
     }
    
     return (
-        <aside className={` ${context.productCartCardOpen == true ? "flex" : "hidden"}  flex-col fixed cartCard border overflow-y-scroll bg-white border-black rounded-lg w-1/5 h-[calc(100vh-80px)]`}>
+        <aside className={` ${context.productCartCardOpen == true ? "flex" : "hidden"}  flex-col fixed right-0 border overflow-y-scroll bg-white border-black rounded-lg w-1/5 h-[calc(100vh-80px)]`}>
             <div className='flex justify-between items-center p-2'>
                 <h2 className='font-medium text-black/60 pl-2 text-xl'>My Order</h2>
                 <div><XCircleIcon 

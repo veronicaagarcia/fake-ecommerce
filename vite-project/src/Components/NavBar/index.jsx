@@ -12,6 +12,13 @@ function NavBar () {
     const parsedSignOut = JSON.parse(signOut)
     const isUserSignOut = context.signOut || parsedSignOut
 
+    const account = localStorage.getItem('account')
+    const parsedAccount = JSON.parse(account)
+    
+    const noAccountInLocalStorage = parsedAccount ? Object.keys(parsedAccount).length === 0 : true
+    const noAccountInLocalState = context.account ? Object.keys(context.account).length === 0 : true
+    const hasUserAnAccount = !noAccountInLocalStorage || !noAccountInLocalState
+
     const signOutClick = () => {
         const stringifySignOut = JSON.stringify(true)
         localStorage.setItem('signOut', stringifySignOut)
@@ -19,23 +26,12 @@ function NavBar () {
     }
 
     const renderView = () => {
-        if (isUserSignOut) {
-          return (
-            <li>
-              <NavLink
-                to="/SignIn"
-                className={({ isActive }) => isActive ? textDecoration : undefined }
-                onClick={() => signOutClick()}>
-                Sign out
-              </NavLink>
-            </li>
-          )
-        } else {
+        if (hasUserAnAccount && !isUserSignOut) {
           return (
             <>
                 <li>
                     <NavLink className="font-extralight font-xs text-white/60" to="/" >
-                       veroagarcia90@gmail.com
+                        {parsedAccount?.email}
                     </NavLink>
                 </li>
                 <li className="hover:text-cyan-400">
@@ -56,14 +52,26 @@ function NavBar () {
                 </li>
             </>
           )
+        } else {
+          return (
+            <li>
+              <NavLink
+                to="/SignIn"
+                className={({ isActive }) => isActive ? textDecoration : undefined }
+                onClick={() => signOutClick()}>
+                Sign out
+              </NavLink>
+            </li>
+          )
         }
-      }
+    }
 
     return (
         <nav className="flex bg-zinc-800 items-center justify-between fixed z-2 top-0 w-full py-5 px-3 text-md ">
             <ul className='flex gap-3 items-center'>
                 <li>
-                    <NavLink className="font-bold text-cyan-400 cursor-none text-lg mt-0">
+                    <NavLink className="font-bold text-cyan-400 text-lg mt-0"
+                    to={`${isUserSignOut ? '/SignIn' : '/'}`}>
                        My Shopp
                     </NavLink>
                 </li>
@@ -101,12 +109,13 @@ function NavBar () {
             <ul className='flex gap-2 items-center'>
                 {renderView()}
                 <li className="hover:text-cyan-400">
-                    <NavLink className="flex item-center {({isActive})=> isActive ? textDecoration : undefined }" to="/MyOrder" >
+                    <button className="flex item-center {({isActive})=> isActive ? textDecoration : undefined }" 
+                    onClick={()=> context.OpenCloseProductCartCard()}>
                         <div>
                             {context.count}
                         </div>
                         <ShoppingCartIcon  className="h-6 w-5 text-md cursor-pointer" /> 
-                    </NavLink>
+                    </button>
                 </li>
             </ul>
         </nav>

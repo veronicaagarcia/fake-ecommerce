@@ -1,3 +1,6 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable react-refresh/only-export-components */
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-dupe-else-if */
 /* eslint-disable react/prop-types */
 import { createContext, useState, useEffect } from "react"
@@ -25,7 +28,6 @@ export const inLocalStorage = () => {
     }
   }
 
-
 export const CartProvider = ({children}) => {
    
     const [products, setProducts] = useState([])
@@ -40,7 +42,6 @@ export const CartProvider = ({children}) => {
     const [searchByTitle, setSearchByTitle] = useState(null)
     const [productsFiltered, setProductsFiltered] = useState([])
     const [searchByCategory, setSearchByCategory] = useState(null)
-
     const [account, setAccount] = useState({})
     const [signOut, setSignOut] = useState(false)
 
